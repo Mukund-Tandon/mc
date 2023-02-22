@@ -1,0 +1,73 @@
+% 2 stocks a and b
+% calculate all returns
+% 10% first stock 
+% 15% second stock
+% variance of first stock = 0.0144
+% variance of second stock = 0.0225
+% coeff of corerelation = 0.5
+% mean means expected return
+w1 = [0 : 5 : 100];
+w2 = [100 : -5 : 0];
+wt1 = w1./100;
+wt2 = w2./100;
+ex_ret = wt1.*10 + wt2.*15;
+coeff_of_cor = 0.5;
+var1 = 0.0144;
+var2 = 0.0225;
+sd1 = sqrt(var1);
+sd2 = sqrt(var2);
+covxy = sd1*sd2*coeff_of_cor;
+ex_var = (wt1.^2).(0.0144) + (wt2.^2)(0.0225) + 2*wt1.*wt2.*covxy;
+plot(ex_var,ex_ret);
+% xlim([0,0.025])
+
+a0 = 100;
+a1 = 110;
+s0 = 80;
+s11 = 100;
+s12 = 60;
+s13 = 50;
+p1 = 0.5;
+p2 = 0.3;
+p3 = 0.2;
+w1 = (50*80)/10000;
+w2 = (60*100)/10000;
+bond_return = (110 - 100)/100;
+s_return_1 = (100-80)/80;
+s_return_2 = (60 - 80)/80;
+s_return_3 = (50 - 80)/80;
+s_return = (s_return_1*p1 + s_return_2*p2 + s_return_3*p3); %stock return
+net_return = (s_return*w1 + bond_return*w2);
+vars = ((s_return - s_return_1)^2)*p1 + ((s_return - s_return_2)^2)*p2 + ((s_return - s_return_3)^2)*p3;
+
+
+
+
+clc
+
+wa = 0:5:100
+wb = 100-wa
+wa=wa/100;
+wb=wb/100;
+
+%% Calculating return and variance of Stock 1
+p=1/10; % because taking 10 values
+stock_return = []
+for i=2:11
+    ret = open(i)-open(i-1)
+    stock_return = [stock_return ; ret ]
+end
+
+expected_return = stock_return.*p
+ret1 = sum(expected_return,1)
+
+
+
+var =  (expected_return - stock_return).^2.*p
+var1 = sum(var,1)
+ret1
+
+
+
+
+
