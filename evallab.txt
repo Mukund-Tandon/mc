@@ -1,71 +1,279 @@
-% 2 stocks a and b
-% calculate all returns
-% 10% first stock 
-% 15% second stock
-% variance of first stock = 0.0144
-% variance of second stock = 0.0225
-% coeff of corerelation = 0.5
-% mean means expected return
-w1 = [0 : 5 : 100];
-w2 = [100 : -5 : 0];
-wt1 = w1./100;
-wt2 = w2./100;
-ex_ret = wt1.*10 + wt2.*15;
-coeff_of_cor = 0.5;
-var1 = 0.0144;
-var2 = 0.0225;
-sd1 = sqrt(var1);
-sd2 = sqrt(var2);
-covxy = sd1*sd2*coeff_of_cor;
-ex_var = (wt1.^2).(0.0144) + (wt2.^2)(0.0225) + 2*wt1.*wt2.*covxy;
-plot(ex_var,ex_ret);
-% xlim([0,0.025])
+// https://cs.lmu.edu/~ray/notes/openglexamples/
 
-a0 = 100;
-a1 = 110;
-s0 = 80;
-s11 = 100;
-s12 = 60;
-s13 = 50;
-p1 = 0.5;
-p2 = 0.3;
-p3 = 0.2;
-w1 = (50*80)/10000;
-w2 = (60*100)/10000;
-bond_return = (110 - 100)/100;
-s_return_1 = (100-80)/80;
-s_return_2 = (60 - 80)/80;
-s_return_3 = (50 - 80)/80;
-s_return = (s_return_1*p1 + s_return_2*p2 + s_return_3*p3); %stock return
-net_return = (s_return*w1 + bond_return*w2);
-vars = ((s_return - s_return_1)^2)*p1 + ((s_return - s_return_2)^2)*p2 + ((s_return - s_return_3)^2)*p3;
+#include "./freeglut-3.2.1/include/GL/freeglut.h"
+#include <GL/glut.h>
+#include <iostream>
+using namespace std;
+
+// void display(void) {
+// 	glClear(GL_COLOR_BUFFER_BIT);
+// 	glLineWidth(16.0);
+// 	glBegin(GL_LINES);
+// 	glVertex2i(110,100);
+// 	glVertex2i(250,100);
+  
+//   glVertex2i(110,200);
+// 	glVertex2i(250,200);
+
+//   glVertex2i(110,200);
+// 	glVertex2i(110,100);
+
+//   glVertex2i(110,100);
+// 	glVertex2i(250,200);
+  
+//   glVertex2i(250,200);
+// 	glVertex2i(250,100);
+  
+// 	glEnd();
+	
+
+	
+// 	glFlush();
+// }
+
+// void myInit(void) {
+// 	glClearColor(0.0, 1.0, 1.0, 0.0);
+// 	glColor3f(1.0, 1.0, 0.0);
+// 	glMatrixMode(GL_PROJECTION);
+// 	gluOrtho2D(0.0, 500.0, 0.0, 400.0);}
+// // }￼    float p1 = ry * ry - (rx * rx)* ry + (rx * rx) * (0.25) ;
 
 
-
-
-clc
-
-wa = 0:5:100
-wb = 100-wa
-wa=wa/100;
-wb=wb/100;
-
-%% Calculating return and variance of Stock 1
-p=1/10; % because taking 10 values
-stock_return = []
-for i=2:11
-    ret = open(i)-open(i-1)
-    stock_return = [stock_return ; ret ]
-end
-
-expected_return = stock_return.*p
-ret1 = sum(expected_return,1)
+// int main(int argc, char **argv) {
+// 	glutInit(&argc, argv);
+// 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+// 	glutInitWindowSize(200, 300);
+// 	glutInitWindowPosition(500, 100);
+// 	glutCreateWindow("Hello Students");
+// 	glutDisplayFunc(display);
+// 	myInit();
+// 	glutMainLoop();
+// }
 
 
 
-var =  (expected_return - stock_return).^2.*p
-var1 = sum(var,1)
-ret1
+
+
+
+
+
+
+
+// int pntX1, pntY1, r;
+
+// void plot(int x, int y)
+// {
+// 	glBegin(GL_POINTS);
+// 	glVertex2i(x+pntX1, y+pntY1);
+// 	glEnd();
+// }
+
+
+// void myInit (void)
+// {
+// 	glClearColor(1.0, 1.0, 1.0, 0.0);
+// 	glColor3f(0.0f, 0.0f, 0.0f);
+// 	glPointSize(4.0);
+// 	glMatrixMode(GL_PROJECTION);
+// 	glLoadIdentity();
+// 	gluOrtho2D(0.0, 640.0, 0.0, 480.0);
+// }
+
+
+// void midPointCircleAlgo()
+// {
+// 	int x = 0;
+// 	int y = r;
+// 	float decision = 5/4 - r;
+// 	plot(x, y);
+
+// 	while (y >= x)
+// 	{
+// 		if (decision < 0)
+// 		{
+// 			x++; 
+// 			decision += 2*x+1;
+// 		}
+// 		else
+// 		{
+// 			y--;
+// 			x++;
+// 			decision += 2*(x-y)+1;
+// 		}
+//     plot(-x, -y);
+// 		plot(x, y);
+// 		plot(x, -y);
+// 		plot(-x, y);
+		
+// 		plot(y, x);
+// 		plot(-y, x);
+// 		plot(y, -x);
+// 		plot(-y, -x);
+// 	}
+
+// }
+
+// void myDisplay(void)
+// {
+// 	glClear (GL_COLOR_BUFFER_BIT);
+// 	glColor3f (100.0, 0.0, 0.0);
+// 	glPointSize(1.0);
+
+// 	midPointCircleAlgo();
+
+// 	glFlush ();
+// }
+
+// int main(int argc, char** argv)
+// {	
+// 	cout << "Enter the coordinates of the center:\n\n" << endl;
+
+// 	cout << "X-coordinate   : "; cin >> pntX1;
+// 	cout << "\nY-coordinate : "; cin >> pntY1;
+// 	cout << "\nEnter radius : "; cin >> r;
+
+
+// 	glutInit(&argc, argv);
+// 	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+// 	glutInitWindowSize (640, 480);
+// 	glutInitWindowPosition (100, 150);
+// 	glutCreateWindow ("Line Drawing ");
+// 	glutDisplayFunc(myDisplay);
+// 	myInit ();
+// 	glutMainLoop();
+  
+
+// }
+// }
+
+
+
+
+
+
+
+
+
+
+int rx,ry;
+int xCenter,yCenter;
+void myinit(void)
+{
+ glClearColor(1.0,1.0,1.0,0.0);
+ glMatrixMode(GL_PROJECTION);
+ glLoadIdentity();
+ gluOrtho2D (0.0,640.0,0.0,480.0);
+ }
+ void setPixel(GLint x,GLint y)
+{
+  glBegin(GL_POINTS);
+     glVertex2i(x,y);
+  glEnd();
+}
+
+void ellipseMidPoint()
+{
+    //int xCenter = 250;
+    //int yCenter = 300;
+    //int rx = 200;
+    //int ry = 200;
+
+    
+    float x = 0;
+    float y = ry;
+    float p1 = ry * ry - (rx * rx)* ry + (rx * rx) * (0.25) ;
+    
+    float dx = 2 * (ry * ry) * x;
+    float dy = 2 * (rx * rx) * y;
+    while(dx < dy)
+    {
+        
+         setPixel(xCenter + x  ,  yCenter+y);
+         setPixel( xCenter - x,   yCenter + y);
+         setPixel( xCenter + x  , yCenter - y );
+         setPixel( xCenter - x  , yCenter - y);
+        if(p1 < 0)
+        {
+            x = x + 1;
+            dx = 2 * (ry * ry) * x;
+            p1 = p1 + dx + (ry * ry);
+        }
+        else
+        {
+            x = x + 1;
+            y = y - 1;
+            dx =  2 * (ry * ry) * x;
+            dy =  2 * (rx * rx) * y;
+             p1 = p1 + dx - dy +(ry * ry);
+        }
+    }
+    
+    float p2 = (ry * ry )* ( x +  0.5) * ( x +  0.5) +  ( rx * rx) * ( y - 1) * ( y - 1) - (rx * rx )* (ry * ry);
+
+
+    while(y > 0)
+    {
+        
+         setPixel(xCenter + x  ,  yCenter+y);
+         setPixel( xCenter - x,   yCenter + y);
+         setPixel( xCenter + x  , yCenter - y );
+         setPixel( xCenter - x  , yCenter - y);    
+        if(p2 > 0)
+        {
+            x = x;
+            y = y - 1;
+            dy = 2 * (rx * rx) * y;
+            
+            p2 = p2 - dy + (rx * rx);
+        }
+        else
+        {
+            x = x + 1;
+            y = y - 1;
+            dy = dy - 2 * (rx * rx) ;
+            dx = dx + 2 * (ry * ry) ;
+            p2 = p2 + dx -
+            dy + (rx * rx);
+        }
+    }
+
+}
+void display()
+{
+     glClear(GL_COLOR_BUFFER_BIT);     
+     glColor3f(1.0,0.0,0.0);          
+     glPointSize(2.0);               
+
+     
+
+     ellipseMidPoint();
+     glFlush(); 
+}
+
+int main(int argc,char** argv)
+{
+    cout<<"\n\nEnter Center Of Ellipse  \n\n";
+    cout<<"\n x = ";
+    cin>>xCenter;
+
+    cout<<"\n y = ";
+    cin>>yCenter;
+
+    cout<<" Enter a Semi Major Axix : ";
+    cin>>rx;
+    cout<<" \nEnter a Semi Minor Axis: ";
+    cin>>ry;
+	glutInit(&argc,argv);
+    glutInitWindowSize(640,480); 
+    glutInitWindowPosition(10,10); 
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutCreateWindow("Midpoint Ellipse Drawing Algorithm");
+	myinit();
+    glutDisplayFunc(display);
+    glutMainLoop();
+
+}
+
 
 
 
